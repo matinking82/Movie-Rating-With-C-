@@ -206,17 +206,12 @@ namespace MovieRating
                             Console.Write("plz enter (1) or (2) : ");
                             Console.ResetColor();
                         }
-                        
+
                         Console.ResetColor();
 
                         if (UserAnswer != 0)
                         {
-                            answers.Add(new MovieAnswer()
-                            {
-                                Movie1 = Movie1,
-                                Movie2 = Movie2,
-                                Answer = UserAnswer
-                            });
+                            FixAnswers(Movie1, Movie2, UserAnswer);
                         }
 
                     }
@@ -244,6 +239,88 @@ namespace MovieRating
 
 
             return SortedMovies;
+
+            void FixAnswers(string movie1, string movie2, int userAnswer)
+            {
+                #region Current Answer
+                answers.Add(new MovieAnswer()
+                {
+                    Movie1 = movie1,
+                    Movie2 = movie2,
+                    Answer = userAnswer
+                });
+                #endregion
+                
+                //#region Fix Movie 1 and 2
+                //if (userAnswer == 2)
+                //{
+                //    var x = movie1;
+                //    movie1 = movie2;
+                //    movie2 = x;
+                //}
+                //#endregion
+
+                //#region Get Second Movies Answers
+                //List<string> Movie2Answers = new List<string>();
+
+                //IEnumerable<MovieAnswer> MovieAnswersForMovie2 = answers
+                //    .Where(m => (m.Movie1 == movie2 && m.Answer == 1) || (m.Movie2 == movie2 && m.Answer == 2));
+
+
+                //foreach (var item in MovieAnswersForMovie2)
+                //{
+                //    string newAnswer = "";
+
+                //    if (item.Answer == 1)
+                //    {
+                //        newAnswer = item.Movie2;
+                //    }
+                //    else
+                //    {
+                //        newAnswer = item.Movie1;
+                //    }
+
+                //    if (!Movie2Answers.Contains(newAnswer))
+                //    {
+                //        Movie2Answers.Add(newAnswer);
+                //    }
+                //}
+
+
+                //#endregion
+
+                //#region Add Answers
+                //foreach (var item in Movie2Answers)
+                //{
+                //    var itemIDX = Movies.IndexOf(item);
+                //    var SelectedIDX = Movies.IndexOf(movie1);
+                //    MovieAnswer newAnswer;
+                //    if (SelectedIDX < itemIDX)
+                //    {
+                //        newAnswer = new MovieAnswer()
+                //        {
+                //            Answer = 1,
+                //            Movie1 = movie1,
+                //            Movie2 = item
+                //        };
+                //    }
+                //    else
+                //    {
+                //        newAnswer = new MovieAnswer()
+                //        {
+                //            Answer = 2,
+                //            Movie1 = item,
+                //            Movie2 = movie1
+                //        };
+                //    }
+
+                //    if (!answers.Any(a => a.Movie1 == newAnswer.Movie1 && a.Movie2 == newAnswer.Movie2))
+                //    {
+                //        answers.Add(newAnswer);
+                //    }
+                //}
+                //#endregion
+            }
         }
 
         private class MovieAnswer
